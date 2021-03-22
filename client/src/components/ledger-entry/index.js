@@ -3,20 +3,20 @@ import ReactDropdown from "react-dropdown"
 import 'react-dropdown/style.css';
 
 import { toValueLabel } from '../../modules/object'
+import { apiFetch } from '../../modules/api-fetch'
 
 import users from '../../data/users/users.json'
 
 
-const defaultValues = {
-  user: '',
-  item: '',
-  cost: ''
-}
-
 export default function LedgerEntry() {
-  const [values, setValues] = useState(defaultValues)
 
-  const updateCost = (e) => {
+  const [values, setValues] = useState({
+    user: '',
+    item: '',
+    cost: 0
+  })
+
+  function updateCost(e) {
     let cost = parseInt(e.target.value);
     setValues((prev) => ({
       ...prev,
@@ -24,7 +24,7 @@ export default function LedgerEntry() {
     }))
   };
 
-  const updateUser = (e) => {
+  function updateUser(e) {
     let user = e.value
     setValues((prev) => ({
       ...prev,
@@ -32,7 +32,7 @@ export default function LedgerEntry() {
     }))
   };
 
-  const updateItem = (e) => {
+  function updateItem(e) {
     let item = e.target.value
     setValues((prev) => ({
       ...prev,
@@ -40,9 +40,31 @@ export default function LedgerEntry() {
     }))
   };
 
+  function valid(values) {
+    return Object.keys(values).map(function (key) {
+      if (values[key] === '' || values[key] === 0) return false
+      return key
+    }).includes(false)
+  }
+
+  console.log(valid(values))
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    apiFetch(`ledger`, 'post', values)
+      .then((json) => {
+        console.log(json)
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+  }
+
+  //console.log(values)
+
   return (
     <div>
-      <form>
+      <form onSubmit={handleSubmit} autoComplete="off">
         <ReactDropdown
           options={toValueLabel(users)}
           onChange={updateUser}
@@ -56,6 +78,10 @@ export default function LedgerEntry() {
         <textarea
           onChange={updateItem}
         />
+
+        <button type="submit" disabled={valid(values)}>
+          Submit Entry
+        </button>
       </form>
     </div>
   )
