@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from "react";
 
 import LedgerEntry from '../../components/ledger-entry'
+import LedgerItem from '../../components/ledger-item'
 
 import { apiFetch } from '../../modules/api-fetch'
 
 export default function Ledger() {
+
+  const ledgerBalance = {
+    calculate: (ledger) => {
+
+    }
+  }
 
   const [ledger, setLedger] = useState([])
 
@@ -14,8 +21,20 @@ export default function Ledger() {
     });
   }, []);
 
-
   return <div>
-    <LedgerEntry />
+    <div> <LedgerEntry /></div>
+    {ledger.length > 0 ? (
+      <div>
+        {ledger.map((entry, index) => {
+          return (
+            <LedgerItem
+              props={entry}
+              key={index} />
+          )
+        })}
+      </div>
+    ) : (
+        <div>No Ledger Entries</div>
+      )}
   </div>
 }
