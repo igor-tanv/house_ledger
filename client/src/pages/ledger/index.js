@@ -7,22 +7,16 @@ import { apiFetch } from '../../modules/api-fetch'
 
 export default function Ledger() {
 
-  const ledgerBalance = {
-    calculate: (ledger) => {
-
-    }
-  }
-
   const [ledger, setLedger] = useState([])
 
   useEffect(() => {
     apiFetch('').then((json) => {
       setLedger(json)
     });
-  }, []);
+  }, [])
 
   return <div>
-    <div> <LedgerEntry /></div>
+    <div> <LedgerEntry setLedger={setLedger} /></div>
     {ledger.length > 0 ? (
       <div>
         {ledger.map((entry, index) => {
