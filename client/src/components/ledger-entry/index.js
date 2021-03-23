@@ -10,11 +10,14 @@ import users from '../../data/users/users.json'
 
 export default function LedgerEntry() {
 
-  const [values, setValues] = useState({
+  const defaultValues = {
     user: '',
     item: '',
-    cost: 0
-  })
+    cost: 0,
+    timestamp: Date.now()
+  }
+
+  const [values, setValues] = useState(defaultValues)
 
   function updateCost(e) {
     let cost = parseInt(e.target.value);
@@ -47,20 +50,19 @@ export default function LedgerEntry() {
     }).includes(false)
   }
 
-  console.log(valid(values))
-
   function handleSubmit(e) {
     e.preventDefault();
     apiFetch(`ledger`, 'post', values)
       .then((json) => {
-        console.log(json)
+        console.log(json, 57)
+        setValues(defaultValues)
       })
       .catch((error) => {
         console.log(error)
       });
   }
 
-  //console.log(values)
+  console.log(values)
 
   return (
     <div>
