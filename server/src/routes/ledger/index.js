@@ -4,7 +4,7 @@ const LedgerService = require('../../services/index')
 const router = new express.Router()
 
 router.get('/api', async (req, res) => {
-  res.json({ "foo": "bar" })
+  res.status(200).json(await LedgerService.read())
 })
 
 router.post('/api/ledger', async (req, res) => {

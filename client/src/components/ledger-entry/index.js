@@ -54,7 +54,6 @@ export default function LedgerEntry() {
     e.preventDefault();
     apiFetch(`ledger`, 'post', values)
       .then((json) => {
-        console.log(json, 57)
         setValues(defaultValues)
       })
       .catch((error) => {
@@ -62,7 +61,7 @@ export default function LedgerEntry() {
       });
   }
 
-  console.log(values)
+  //console.log(values)
 
   return (
     <div>
