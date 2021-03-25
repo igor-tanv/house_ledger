@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ReactDropdown from "react-dropdown"
 import 'react-dropdown/style.css';
+//import './styles.css'
 
 import { toValueLabel } from '../../modules/object'
 import { apiFetch } from '../../modules/api-fetch'
@@ -83,7 +84,7 @@ export default function LedgerEntry({ setLedger }) {
           value={values.item}
         />
 
-        <button type="submit" disabled={valid(values)}>
+        <button className="button" type="submit" disabled={valid(values)}>
           Submit Entry
         </button>
       </form>
