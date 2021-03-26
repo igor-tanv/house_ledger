@@ -8,6 +8,8 @@ import { apiFetch } from '../../modules/api-fetch'
 
 import users from '../../data/users/users.json'
 
+import './styles.css'
+
 export default function LedgerEntry({ setLedger }) {
 
   const defaultValues = {
@@ -23,7 +25,7 @@ export default function LedgerEntry({ setLedger }) {
     let cost = parseInt(e.target.value) || 0;
     setValues((prev) => ({
       ...prev,
-      cost,
+      cost
     }))
   };
 
@@ -65,23 +67,24 @@ export default function LedgerEntry({ setLedger }) {
   }
 
   return (
-    <div>
+    <div className="ledger-entry">
       <form onSubmit={handleSubmit} autoComplete="off">
-        <ReactDropdown
+        <ReactDropdown className="dropdown-wrapper"
           options={toValueLabel(users)}
           onChange={updateUser}
           placeholder="Select a user"
           value={values.user}
         />
-        <input
+        <input className="quantity"
           type="number"
           min="0"
           onChange={updateCost}
           value={String(values.cost)}
         />
-        <textarea
+        <textarea className="text-area"
           onChange={updateItem}
           value={values.item}
+          placeholder="enter item description"
         />
 
         <button className="button" type="submit" disabled={valid(values)}>

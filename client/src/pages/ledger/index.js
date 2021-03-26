@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 
 import LedgerEntry from '../../components/ledger-entry'
-import LedgerItem from '../../components/ledger-item'
+import LedgerTable from '../../components/ledger-table'
 
 import { apiFetch } from '../../modules/api-fetch'
+
+import './styles.css'
 
 export function calculateBalance(ledger, setUserShare) {
   let igor = 0
@@ -42,20 +44,20 @@ export default function Ledger() {
     }).then();
   }, [])
 
+  ledger.map((l) => console.log(l))
+
   return <div className="container-wrapper">
     <div className="ledger-entry"> <LedgerEntry setLedger={setLedger} /></div>
     {ledger.length > 0 ? (
       <div>
-        <h2>Igor: {(Math.round(userShare.igor / 1000) * 1000).toLocaleString()}</h2>
-        <h2>Nick: {(Math.round(userShare.nick / 1000) * 1000).toLocaleString()}</h2>
-        <h2>Seb: {(Math.round(userShare.seb / 1000) * 1000).toLocaleString()}</h2>
-        <ul className="unordered-list">{ledger.map((entry, index) => {
-          return (
-            <LedgerItem
-              props={entry}
-              key={index} />
-          )
-        })}</ul>
+        <div className="ledger-balance">
+          <h2>Igor: {(Math.round(userShare.igor / 1000) * 1000).toLocaleString()}</h2>
+          <h2>Nick: {(Math.round(userShare.nick / 1000) * 1000).toLocaleString()}</h2>
+          <h2>Seb: {(Math.round(userShare.seb / 1000) * 1000).toLocaleString()}</h2>
+        </div>
+        <div>
+          <LedgerTable props={ledger} />
+        </div>
 
       </div>
     ) : (

@@ -1,0 +1,20 @@
+.table-ledger-entry {
+  border-collapse: separate;
+  border-spacing: 50px 0;
+}
+
+.col-head {
+  letter-spacing: -0.3px;
+  color: blue;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.single-row {
+  width: max-content;
+}
+
+td {
+  padding: 10px 0;
+}
