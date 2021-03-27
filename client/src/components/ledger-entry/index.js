@@ -49,16 +49,17 @@ export default function LedgerEntry({ setLedger }) {
   };
 
   function updateDate(e) {
-    let item = e.target.value
     setValues((prev) => ({
       ...prev,
-      item,
+      timestamp: e,
     }))
   };
 
+
+
   function valid(values) {
     return Object.keys(values).map(function (key) {
-      if (values[key] === '' || values[key] === 0) return false
+      if (values[key] === '' || values[key] === 0 || values[key] === null) return false
       return key
     }).includes(false)
   }
@@ -80,7 +81,8 @@ export default function LedgerEntry({ setLedger }) {
   return (
     <div className="ledger-entry">
       <form onSubmit={handleSubmit} autoComplete="off">
-        <ReactDropdown className="dropdown-wrapper"
+        <ReactDropdown
+          className="dropdown-wrapper"
           options={toValueLabel(users)}
           onChange={updateUser}
           placeholder="Select a user"
