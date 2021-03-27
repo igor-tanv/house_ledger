@@ -1,9 +1,5 @@
 import React from "react";
-
-import users from '../../data/users/users.json'
-
 import './styles.css'
-
 
 const renderHead = () => {
   return (
@@ -31,11 +27,11 @@ const renderItem = (props, index) => {
   );
 }
 
-
 export default function LedgerTable(props) {
 
   //FIX THIS HACK
   props = props.props
+
 
   return (
     <div className="table-container">
