@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import ReactDropdown from "react-dropdown"
-import 'react-dropdown/style.css';
-//import './styles.css'
+import DatePicker from 'react-date-picker';
+
+
 
 import { toValueLabel } from '../../modules/object'
 import { apiFetch } from '../../modules/api-fetch'
 
 import users from '../../data/users/users.json'
 
+import 'react-dropdown/style.css';
 import './styles.css'
+
 
 export default function LedgerEntry({ setLedger }) {
 
@@ -16,7 +19,7 @@ export default function LedgerEntry({ setLedger }) {
     user: null,
     item: '',
     cost: 0,
-    timestamp: Date.now()
+    timestamp: new Date()
   }
 
   const [values, setValues] = useState(defaultValues)
@@ -38,6 +41,14 @@ export default function LedgerEntry({ setLedger }) {
   };
 
   function updateItem(e) {
+    let item = e.target.value
+    setValues((prev) => ({
+      ...prev,
+      item,
+    }))
+  };
+
+  function updateDate(e) {
     let item = e.target.value
     setValues((prev) => ({
       ...prev,
@@ -75,6 +86,13 @@ export default function LedgerEntry({ setLedger }) {
           placeholder="Select a user"
           value={values.user}
         />
+
+        <DatePicker
+          onChange={updateDate}
+          value={values.timestamp}
+          dateFormat="MMMM d, yyyy"
+        />
+
         <input className="quantity"
           type="number"
           min="0"

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import './styles.css'
 
@@ -25,6 +25,11 @@ function calculateBalance(ledger) {
   return { igor, nick, seb }
 }
 
+function renderBalanceClass(userShare) {
+  if (userShare >= 0) return 'positive'
+  else return 'negative'
+}
+
 export default function LedgerBalance(props) {
 
   //FIX THIS HACK
@@ -35,9 +40,9 @@ export default function LedgerBalance(props) {
   return (
     <div className="table-container">
       <div className="ledger-balance">
-        <h2>Igor: {(Math.round(userShare.igor / 1000) * 1000).toLocaleString()}</h2>
-        <h2>Nick: {(Math.round(userShare.nick / 1000) * 1000).toLocaleString()}</h2>
-        <h2>Seb: {(Math.round(userShare.seb / 1000) * 1000).toLocaleString()}</h2>
+        <h2 className={`user-balance-${renderBalanceClass(userShare.igor)}`}>Igor: {(Math.round(userShare.igor / 1000) * 1000).toLocaleString()}</h2>
+        <h2 className={`user-balance-${renderBalanceClass(userShare.nick)}`}>Nick: {(Math.round(userShare.nick / 1000) * 1000).toLocaleString()}</h2>
+        <h2 className={`user-balance-${renderBalanceClass(userShare.seb)}`}>Seb: {(Math.round(userShare.seb / 1000) * 1000).toLocaleString()}</h2>
       </div>
     </div>
   );

@@ -1,6 +1,9 @@
 import React from "react";
 import './styles.css'
 
+import users from '../../data/users/users.json'
+
+
 const renderHead = () => {
   return (
     <tr>
@@ -20,7 +23,7 @@ const renderHead = () => {
 const renderItem = (props, index) => {
   return (
     <tr key={index} className="single-row">
-      <td>{props.user}</td>
+      <td>{users[props.user]}</td>
       <td>{props.item} </td>
       <td>{props.cost}</td>
     </tr>

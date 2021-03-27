@@ -19,6 +19,7 @@ export default function Ledger() {
   }, [])
 
   return <div className="container-wrapper">
+    <h1>The Ledger of the Seacrow</h1>
     <div className="ledger-entry"> <LedgerEntry setLedger={setLedger} /></div>
     {ledger.length > 0 ? (
       <div>
