@@ -26,7 +26,7 @@ function calculateBalance(ledger) {
 }
 
 function renderBalanceClass(userShare) {
-  if (userShare >= 0) return 'positive'
+  if (userShare > 0) return 'positive'
   else return 'negative'
 }
 

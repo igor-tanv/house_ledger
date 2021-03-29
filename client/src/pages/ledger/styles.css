@@ -13,3 +13,7 @@
   zoom: 1;
   position: relative;
 }
+
+.button {
+  position: left;
+}

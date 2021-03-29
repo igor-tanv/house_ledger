@@ -1,6 +1,7 @@
 .table-ledger-entry {
   border-collapse: separate;
   border-spacing: 50px 0;
+  border: 1px solid black;
 }
 
 .col-head {

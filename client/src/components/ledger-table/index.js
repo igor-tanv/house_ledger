@@ -14,6 +14,9 @@ const renderHead = () => {
         <div className="col-head">What </div>
       </td>
       <td>
+        <div className="col-head">When </div>
+      </td>
+      <td>
         <div className="col-head">How Much</div>
       </td>
     </tr>
@@ -25,7 +28,14 @@ const renderItem = (props, index) => {
     <tr key={index} className="single-row">
       <td>{users[props.user]}</td>
       <td>{props.item} </td>
-      <td>{props.cost}</td>
+      <td>
+        {new Intl.DateTimeFormat("en-GB", {
+          weekday: "short",
+          month: "long",
+          day: "2-digit"
+        }).format(props.purchaseDate)}
+      </td>
+      <td>{props.cost.toLocaleString()}</td>
     </tr>
   );
 }

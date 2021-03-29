@@ -18,8 +18,22 @@ export default function Ledger() {
     }).then();
   }, [])
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    apiFetch(`ledger/clear`, 'post')
+      .then((json) => {
+        setLedger(json)
+      })
+      .catch((error) => {
+        console.log(error)
+      });
+  }
+
+
+
   return <div className="container-wrapper">
-    <h1>The Ledger of the Seacrow</h1>
+    <h1>The Daily Ledger</h1>
+    <button onClick={handleSubmit}>Clear Ledger</button>
     <div className="ledger-entry"> <LedgerEntry setLedger={setLedger} /></div>
     {ledger.length > 0 ? (
       <div>

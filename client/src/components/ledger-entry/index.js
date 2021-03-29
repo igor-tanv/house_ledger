@@ -19,7 +19,7 @@ export default function LedgerEntry({ setLedger }) {
     user: null,
     item: '',
     cost: 0,
-    timestamp: new Date()
+    purchaseDate: new Date()
   }
 
   const [values, setValues] = useState(defaultValues)
@@ -51,7 +51,7 @@ export default function LedgerEntry({ setLedger }) {
   function updateDate(e) {
     setValues((prev) => ({
       ...prev,
-      timestamp: e,
+      purchaseDate: e
     }))
   };
 
@@ -91,13 +91,12 @@ export default function LedgerEntry({ setLedger }) {
 
         <DatePicker
           onChange={updateDate}
-          value={values.timestamp}
+          value={values.purchaseDate}
           dateFormat="MMMM d, yyyy"
         />
 
         <input className="quantity"
           type="number"
-          min="0"
           onChange={updateCost}
           value={String(values.cost)}
         />
@@ -108,7 +107,7 @@ export default function LedgerEntry({ setLedger }) {
         />
 
         <button className="button" type="submit" disabled={valid(values)}>
-          Submit Entry
+          Submit to Ledger
         </button>
       </form>
     </div>
