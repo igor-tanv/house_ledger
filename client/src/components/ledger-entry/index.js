@@ -26,7 +26,7 @@ export default function LedgerEntry({ setLedger }) {
   const [values, setValues] = useState(defaultValues)
 
   function updateCost(e) {
-    let cost = parseInt(e.target.value) || 0;
+    let cost = parseInt(e.target.value.replace(/,/g, '')) || 0;
     setValues((prev) => ({
       ...prev,
       cost
@@ -98,9 +98,9 @@ export default function LedgerEntry({ setLedger }) {
         />
 
         <input className="quantity"
-          type="number"
+          type="text"
           onChange={updateCost}
-          value={String(values.cost)}
+          value={values.cost.toLocaleString()}
         />
         <textarea className="text-area"
           onChange={updateItem}

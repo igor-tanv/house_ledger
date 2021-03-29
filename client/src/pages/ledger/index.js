@@ -33,7 +33,7 @@ export default function Ledger() {
 
   return <div className="container-wrapper">
     <h1>The Daily Ledger</h1>
-    <button onClick={handleSubmit}>Clear Ledger</button>
+    <button onClick={handleSubmit}>Clear Ledger Entries</button>
     <div className="ledger-entry"> <LedgerEntry setLedger={setLedger} /></div>
     {ledger.length > 0 ? (
       <div>
