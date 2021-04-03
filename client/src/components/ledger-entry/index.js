@@ -19,8 +19,7 @@ export default function LedgerEntry({ setLedger }) {
     user: null,
     item: '',
     cost: 0,
-    purchaseDate: new Date(),
-    createdAt: new Date()
+    purchaseDate: new Date()
   }
 
   const [values, setValues] = useState(defaultValues)
@@ -50,7 +49,6 @@ export default function LedgerEntry({ setLedger }) {
   };
 
   function updateDate(e) {
-    console.log(e, 52)
     setValues((prev) => ({
       ...prev,
       purchaseDate: e

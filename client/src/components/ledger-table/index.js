@@ -33,7 +33,7 @@ const renderItem = (props, index) => {
           weekday: "short",
           month: "long",
           day: "2-digit"
-        }).format(props.purchaseDate)}
+        }).format(props.purchase_date)}
       </td>
       <td>{props.cost.toLocaleString()}</td>
     </tr>
