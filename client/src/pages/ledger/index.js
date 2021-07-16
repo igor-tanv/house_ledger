@@ -34,6 +34,16 @@ export default function Ledger() {
   return <div className="container-wrapper">
     <h1>The Daily Ledger</h1>
     <button onClick={handleSubmit}>Clear Ledger Entries</button>
+    <button
+      type="button"
+      onClick={(e) => {
+        e.preventDefault();
+        window.location.href = '/new/ledger';
+      }}
+    >
+      Create One Time Ledger
+    </button>
+
     <div className="ledger-entry"> <LedgerEntry setLedger={setLedger} /></div>
     {ledger.length > 0 ? (
       <div>
@@ -41,7 +51,7 @@ export default function Ledger() {
         <LedgerTable props={ledger} />
       </div>
     ) : (
-        <div>No Ledger Entries</div>
-      )}
+      <div>No Ledger Entries</div>
+    )}
   </div>
 }
