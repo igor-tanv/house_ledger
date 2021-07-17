@@ -52,11 +52,6 @@ export default function LedgerForm() {
     }))
   };
 
-  function handleSubmit(e) {
-    e.preventDefault();
-
-  }
-
   function valid(values) {
     return Object.keys(values).map(function (key) {
       if (values[key] === '' || values[key] === 0 || values[key] === null) return false
@@ -64,9 +59,20 @@ export default function LedgerForm() {
     }).includes(false)
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    apiFetch(`ledger/temp`, 'post', values)
+      .then((json) => {
+        console.log(json, 71)
+      })
+      .catch((error) => {
+        console.log(error, 74)
+      });
+  }
+
 
   return (
-    <div classname="ledger-form">
+    <div className="ledger-form">
       <HomeButton />
       <h1>Start A New Ledger</h1>
       <form onSubmit={handleSubmit} autoComplete="off">
