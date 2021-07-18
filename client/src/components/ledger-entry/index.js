@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import ReactDropdown from "react-dropdown"
 import DatePicker from 'react-date-picker';
 
-import { toValueLabel } from '../../modules/object'
+import { formatDropdown } from '../../modules/format-dropdown'
+import { validateEntries } from '../../modules/validate-entries'
 import { apiFetch } from '../../modules/api-fetch'
 
 import 'react-dropdown/style.css';
@@ -10,6 +11,8 @@ import './styles.css'
 
 
 export default function LedgerEntry({ setLedger, users }) {
+
+  console.log(validateEntries)
 
   const defaultValues = {
     user: null,
@@ -51,14 +54,6 @@ export default function LedgerEntry({ setLedger, users }) {
     }))
   };
 
-  //extract
-  function valid(values) {
-    return Object.keys(values).map(function (key) {
-      if (values[key] === '' || values[key] === 0 || values[key] === null) return false
-      return key
-    }).includes(false)
-  }
-
   function handleSubmit(e) {
     e.preventDefault();
     apiFetch(`ledger`, 'post', values)
@@ -78,7 +73,7 @@ export default function LedgerEntry({ setLedger, users }) {
       <form onSubmit={handleSubmit} autoComplete="off">
         <ReactDropdown
           className="dropdown-wrapper"
-          options={toValueLabel(users)}
+          options={formatDropdown(users)}
           onChange={updateUser}
           placeholder="Select a user"
           value={values.user}
@@ -101,7 +96,7 @@ export default function LedgerEntry({ setLedger, users }) {
           placeholder="enter item description"
         />
 
-        <button className="button" type="submit" disabled={valid(values)}>
+        <button className="button" type="submit" disabled={validateEntries(values)}>
           Submit to Ledger
         </button>
       </form>
