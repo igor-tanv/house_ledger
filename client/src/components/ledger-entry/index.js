@@ -5,13 +5,11 @@ import DatePicker from 'react-date-picker';
 import { toValueLabel } from '../../modules/object'
 import { apiFetch } from '../../modules/api-fetch'
 
-import users from '../../data/users/users.json'
-
 import 'react-dropdown/style.css';
 import './styles.css'
 
 
-export default function LedgerEntry({ setLedger }) {
+export default function LedgerEntry({ setLedger, users }) {
 
   const defaultValues = {
     user: null,

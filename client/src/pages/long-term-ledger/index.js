@@ -4,6 +4,8 @@ import LedgerEntry from '../../components/ledger-entry'
 import LedgerTable from '../../components/ledger-table'
 import LedgerBalance from '../../components/ledger-balance'
 
+import users from '../../data/users/users.json'
+
 import { apiFetch } from '../../modules/api-fetch'
 
 import './styles.css'
@@ -14,7 +16,6 @@ export default function LongTermLedger() {
 
   useEffect(() => {
     apiFetch('').then((json) => {
-      debugger
       setLedger(json)
     }).then();
   }, [])
@@ -53,7 +54,12 @@ export default function LongTermLedger() {
       Active Short-Term Ledgers
     </button>
 
-    <div className="ledger-entry"> <LedgerEntry setLedger={setLedger} /></div>
+    <div className="ledger-entry">
+      <LedgerEntry
+        setLedger={setLedger}
+        users={users}
+      />
+    </div>
     {ledger.length > 0 ? (
       <div>
         <LedgerBalance props={ledger} />

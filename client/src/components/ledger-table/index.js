@@ -1,6 +1,8 @@
 import React from "react";
 import './styles.css'
 
+import formatDate from '../../modules/format-date'
+
 import users from '../../data/users/users.json'
 
 
@@ -28,13 +30,7 @@ const renderItem = (props, index) => {
     <tr key={index} className="single-row">
       <td>{users[props.user]}</td>
       <td>{props.item} </td>
-      <td>
-        {new Intl.DateTimeFormat("en-GB", {
-          weekday: "short",
-          month: "long",
-          day: "2-digit"
-        }).format(props.purchase_date)}
-      </td>
+      <td>{formatDate(props.purchase_date)}</td>
       <td>{props.cost.toLocaleString()}</td>
     </tr>
   );
