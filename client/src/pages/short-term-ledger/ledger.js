@@ -4,9 +4,9 @@ import { withRouter } from "react-router-dom"
 
 import { apiFetch } from '../../modules/api-fetch'
 
-import OneTimeLedgerComponent from '../../components/one-time-ledger/ledger';
+import ShortLedger from '../../components/short-term-ledger';
 
-function OneTimeLedger({ match }) {
+function ShortTermLedger({ match }) {
 
   const [ledger, setLedger] = useState([])
 
@@ -19,8 +19,8 @@ function OneTimeLedger({ match }) {
 
 
   return <div className="container-wrapper">
-    <OneTimeLedgerComponent props={ledger} />
+    <ShortLedger props={ledger} />
   </div>
 }
 
-export default withRouter(OneTimeLedger)
+export default withRouter(ShortTermLedger)

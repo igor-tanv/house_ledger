@@ -8,7 +8,7 @@ import { apiFetch } from '../../modules/api-fetch'
 
 import './styles.css'
 
-export default function Ledger() {
+export default function LongTermLedger() {
 
   const [ledger, setLedger] = useState([])
 

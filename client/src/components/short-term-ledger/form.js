@@ -7,7 +7,7 @@ import HomeButton from '../../ui/home-button'
 
 import 'react-dropdown/style.css';
 
-export default function LedgerForm() {
+export default function CreateShortTermLedger() {
 
   const defaultValues = {
     users: '',
@@ -53,7 +53,7 @@ export default function LedgerForm() {
   return (
     <div className="ledger-form">
       <HomeButton />
-      <h1>Start A New Ledger</h1>
+      <h1>Create a Short Term Ledger</h1>
       <form onSubmit={handleSubmit} autoComplete="off">
         <textarea className="text-area"
           onChange={updateUsers}
@@ -66,7 +66,7 @@ export default function LedgerForm() {
           dateFormat="MMMM d, yyyy"
         />
         <button className="button" type="submit" disabled={valid(values)}>
-          Create Ledger
+          Create
         </button>
       </form>
     </div>

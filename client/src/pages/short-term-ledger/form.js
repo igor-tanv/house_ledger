@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-import LedgerForm from '../../components/one-time-ledger/form'
+import LedgerForm from '../../components/short-term-ledger/form'
 
 import { apiFetch } from '../../modules/api-fetch'
 
-export default function CreateNewLedger() {
+export default function CreateShortTermLedger() {
 
   return (
     <div>

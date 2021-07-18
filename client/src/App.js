@@ -1,26 +1,26 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import Ledger from "./pages/ledger";
-import CreateNewLedger from "./pages/one-time-ledger/form"
-import OneTimeLedgers from "./pages/one-time-ledger/index"
-import OneTimeLedger from "./pages/one-time-ledger/ledger"
+import LongTermLedger from "./pages/long-term-ledger";
+import ShortTermLedger from "./pages/short-term-ledger/ledger"
+import ShortTermLedgerList from "./pages/short-term-ledger/index"
+import CreateShortTermLedger from "./pages/short-term-ledger/form"
 
 export default function App() {
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <Ledger />
+          <LongTermLedger />
         </Route>
         <Route exact path="/new/ledger">
-          <CreateNewLedger />
+          <CreateShortTermLedger />
         </Route>
         <Route exact path="/active/ledgers">
-          <OneTimeLedgers />
+          <ShortTermLedgerList />
         </Route>
         <Route exact path="/active/ledgers/:id">
-          <OneTimeLedger />
+          <ShortTermLedger />
         </Route>
       </Switch>
     </BrowserRouter>

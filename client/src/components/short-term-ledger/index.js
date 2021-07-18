@@ -2,7 +2,7 @@ import React from "react";
 
 import 'react-dropdown/style.css';
 
-export default function OneTimeLedgerList({ props }) {
+export default function ShortLedger({ props }) {
 
   return (
     <div className='one-time-ledger-list'>
