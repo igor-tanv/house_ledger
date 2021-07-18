@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import { apiFetch } from '../../modules/api-fetch'
 
+import OneTimeLedgerList from '../../components/one-time-ledger'
+
 export default function OneTimeLedgers() {
 
   const [ledgers, setLedgers] = useState([])
@@ -18,7 +20,7 @@ export default function OneTimeLedgers() {
     <h1>Temp Ledger</h1>
     {ledgers.length > 0 ? (
       <div>
-        yes
+        <OneTimeLedgerList props={ledgers} />
       </div>
     ) : (
       <div>No Active Ledgers</div>

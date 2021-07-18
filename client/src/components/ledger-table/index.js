@@ -40,9 +40,7 @@ const renderItem = (props, index) => {
   );
 }
 
-export default function LedgerTable(props) {
-  //FIX THIS HACK
-  props = props.props
+export default function LedgerTable({ props }) {
 
   return (
     <div className="table-container">
