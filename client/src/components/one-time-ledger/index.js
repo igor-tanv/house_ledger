@@ -10,4 +10,14 @@ import { apiFetch } from '../../modules/api-fetch'
 import users from '../../data/users/users.json'
 
 import 'react-dropdown/style.css';
-import './styles.css'
+
+//needs ledger id
+export default function OneTimeLedger() {
+
+  return <div>
+    temp ledger info goes here
+ </div>
+
+
+
+}

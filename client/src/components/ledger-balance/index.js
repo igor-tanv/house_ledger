@@ -3,6 +3,7 @@ import React from "react";
 import './styles.css'
 
 function calculateBalance(ledger) {
+  console.log(ledger, 6)
   let igor = 0
   let nick = 0
   let seb = 0

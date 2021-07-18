@@ -22,7 +22,7 @@ const renderHead = () => {
     </tr>
   );
 }
-
+//extract date format to helper function
 const renderItem = (props, index) => {
   return (
     <tr key={index} className="single-row">
