@@ -2,9 +2,10 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import LongTermLedger from "./pages/long-term-ledger";
-import ShortTermLedger from "./pages/short-term-ledger/ledger"
-import ShortTermLedgerList from "./pages/short-term-ledger/index"
-import CreateShortTermLedger from "./pages/short-term-ledger/form"
+import ShortTermLedger from "./pages/short-term-ledger"
+import ShortTermLedgerForm from "./pages/short-term-ledger-form"
+import ShortTermLedgerList from "./pages/short-term-ledger-list"
+
 
 export default function App() {
   return (
@@ -13,14 +14,14 @@ export default function App() {
         <Route exact path="/">
           <LongTermLedger />
         </Route>
-        <Route exact path="/new/ledger">
-          <CreateShortTermLedger />
+        <Route exact path="/short/new">
+          <ShortTermLedgerForm />
         </Route>
-        <Route exact path="/active/ledgers">
-          <ShortTermLedgerList />
-        </Route>
-        <Route exact path="/active/ledgers/:id">
+        <Route exact path="/short/:id">
           <ShortTermLedger />
+        </Route>
+        <Route exact path="/short">
+          <ShortTermLedgerList />
         </Route>
       </Switch>
     </BrowserRouter>

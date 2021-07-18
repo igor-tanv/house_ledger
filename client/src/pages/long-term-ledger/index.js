@@ -14,6 +14,7 @@ export default function LongTermLedger() {
 
   useEffect(() => {
     apiFetch('').then((json) => {
+      debugger
       setLedger(json)
     }).then();
   }, [])
@@ -30,26 +31,26 @@ export default function LongTermLedger() {
   }
 
   return <div className="container-wrapper">
-    <h1>The Daily Ledger</h1>
+    <h1>The Crown Ledger</h1>
     <button onClick={handleSubmit}>Clear Ledger Entries</button>
     <button
       type="button"
       onClick={(e) => {
         e.preventDefault();
-        window.location.href = '/new/ledger';
+        window.location.href = '/short/new';
       }}
     >
-      Create One-Time Ledger
+      Create Short-Term Ledger
     </button>
 
     <button
       type="button"
       onClick={(e) => {
         e.preventDefault();
-        window.location.href = '/active/ledgers';
+        window.location.href = '/short';
       }}
     >
-      Active One-Time Ledgers
+      Active Short-Term Ledgers
     </button>
 
     <div className="ledger-entry"> <LedgerEntry setLedger={setLedger} /></div>
