@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DatePicker from 'react-date-picker';
 
 import { apiFetch } from '../../modules/api-fetch'
+import { validateEntries } from '../../modules/validate-entries'
 
 import HomeButton from '../../ui/home-button'
 
@@ -15,6 +16,7 @@ export default function CreateShortTermLedger() {
   }
 
   const [values, setValues] = useState(defaultValues)
+  const [error, setError] = useState(null)
 
   function updateUsers(e) {
     let users = (e.target.value)
@@ -22,6 +24,7 @@ export default function CreateShortTermLedger() {
       ...prev,
       users
     }))
+
   };
 
   function updateDate(e) {
@@ -31,41 +34,52 @@ export default function CreateShortTermLedger() {
     }))
   };
 
-  function valid(values) {
-    console.log(values)
-    return Object.keys(values).map(function (key) {
-      if (values[key] === '' || values[key] === 0 || values[key] === null) return false
-      return key
-    }).includes(false)
-  }
+  function checkTotalShare(shares) {
+    if (!/\d/.test(shares)) {
+      setError(`Each user must have share`)
+      return false
+    }
+    const shareTotal = shares.match(/[0-9]+/g)
+      .map(num => parseInt(num))
+      .reduce((a, b) => a + b, 0)
+    if (shareTotal === 100) return true
+    else {
+      setError(`Total user shares must add up to 100, your shares currently add up to ${shareTotal}`)
+      return false
+    }
+  };
+
 
   function handleSubmit(e) {
     e.preventDefault();
-    apiFetch(`ledger/temp`, 'post', values)
-      .then((json) => {
-        console.log(json, 71)
-      })
-      .catch((error) => {
-        console.log(error, 74)
-      });
+    if (checkTotalShare(values.users)) {
+      apiFetch(`ledger/temp`, 'post', values)
+        .then((json) => {
+          console.log(json, 71)
+        })
+        .catch((error) => {
+          console.log(error, 74)
+        });
+    }
   }
 
   return (
     <div className="ledger-form">
       <HomeButton />
       <h1>Create a Short Term Ledger</h1>
+      {error && <span className="error">{error}</span>}
       <form onSubmit={handleSubmit} autoComplete="off">
         <textarea className="text-area"
           onChange={updateUsers}
           value={values.users}
-          placeholder="enter users first name seperated by a space"
+          placeholder="enter name:share (example john:60 mike:40)"
         />
         <DatePicker
           onChange={updateDate}
           value={values.date}
           dateFormat="MMMM d, yyyy"
         />
-        <button className="button" type="submit" disabled={valid(values)}>
+        <button className="button" type="submit" disabled={validateEntries(values)}>
           Create
         </button>
       </form>
