@@ -35,10 +35,12 @@ export default function CreateShortTermLedger() {
   };
 
   function checkTotalShare(shares) {
+    //check input has at least one number
     if (!/\d/.test(shares)) {
-      setError(`Each user must have share`)
+      setError(`Each user must have a share`)
       return false
     }
+    //check input number add up to 100
     const shareTotal = shares.match(/[0-9]+/g)
       .map(num => parseInt(num))
       .reduce((a, b) => a + b, 0)
@@ -49,12 +51,12 @@ export default function CreateShortTermLedger() {
     }
   };
 
-
   function handleSubmit(e) {
     e.preventDefault();
     if (checkTotalShare(values.users)) {
-      apiFetch(`ledger/temp`, 'post', values)
+      apiFetch(`ledger/short`, 'post', values)
         .then((json) => {
+          //redirect to new ledger here
           console.log(json, 71)
         })
         .catch((error) => {
