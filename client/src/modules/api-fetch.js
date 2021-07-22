@@ -1,5 +1,7 @@
 import fetch from "isomorphic-fetch";
+import os from 'os';
 require("es6-promises");
+
 
 export function apiFetch(path, method, data) {
   const options = {};
@@ -12,7 +14,14 @@ export function apiFetch(path, method, data) {
     options["body"] = JSON.stringify(data);
   }
 
-  const url = `//${process.env.REACT_APP_HOST}/api/${path}`;
+  let url;
+
+  if (os.hostname().indexOf("local") > -1) {
+    url = `//${process.env.REACT_APP_HOST}/api/${path}`;
+  } else {
+    url = `//${process.env.REACT_APP_LOCALHOST}/api/${path}`;
+  }
+
 
   return fetch(url, {
     method: method.toUpperCase(),
