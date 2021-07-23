@@ -8,11 +8,16 @@ import users from '../../data/users/users.json'
 
 import { apiFetch } from '../../modules/api-fetch'
 
+import { defaultValues } from '../../form-helpers/defaultEntryValues'
+
 import './styles.css'
 
 export default function LongTermLedger() {
 
+
+  const [values, setValues] = useState(defaultValues)
   const [ledger, setLedger] = useState([])
+  const [error, setError] = useState('')
 
   useEffect(() => {
     apiFetch('').then((json) => {
@@ -22,18 +27,33 @@ export default function LongTermLedger() {
 
   function handleSubmit(e) {
     e.preventDefault();
+    apiFetch(`ledger`, 'post', values)
+      .then((json) => {
+        setValues(defaultValues)
+        apiFetch('').then((json) => {
+          setLedger(json)
+        });
+      })
+      .catch((error) => {
+        setError(error)
+      });
+  }
+
+  function clearActiveLedger(e) {
+    e.preventDefault();
     apiFetch(`ledger/clear`, 'post')
       .then((json) => {
         setLedger(json)
       })
       .catch((error) => {
-        console.log(error)
+        setError(error)
       });
   }
 
   return <div className="container-wrapper">
     <h1>The Crown Ledger</h1>
-    <button onClick={handleSubmit}>Clear Ledger Entries</button>
+    {error && <span className="error">{error}</span>}
+    <button onClick={clearActiveLedger}>Clear Ledger Entries</button>
     <button
       type="button"
       onClick={(e) => {
@@ -56,8 +76,10 @@ export default function LongTermLedger() {
 
     <div className="ledger-entry">
       <LedgerEntry
-        setLedger={setLedger}
+        values={values}
+        setValues={setValues}
         users={users}
+        handleSubmit={handleSubmit}
       />
     </div>
     {ledger.length > 0 ? (

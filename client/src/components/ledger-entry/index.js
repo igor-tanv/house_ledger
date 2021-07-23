@@ -10,18 +10,7 @@ import 'react-dropdown/style.css';
 import './styles.css'
 
 
-export default function LedgerEntry({ setLedger, users }) {
-
-  console.log(validateEntries)
-
-  const defaultValues = {
-    user: null,
-    item: '',
-    cost: 0,
-    purchaseDate: new Date()
-  }
-
-  const [values, setValues] = useState(defaultValues)
+export default function LedgerEntry({ values, setValues, users, handleSubmit }) {
 
   function updateCost(e) {
     let cost = parseInt(e.target.value.replace(/,/g, '')) || 0;
@@ -54,19 +43,6 @@ export default function LedgerEntry({ setLedger, users }) {
     }))
   };
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    apiFetch(`ledger`, 'post', values)
-      .then((json) => {
-        setValues(defaultValues)
-        apiFetch('').then((json) => {
-          setLedger(json)
-        });
-      })
-      .catch((error) => {
-        console.log(error)
-      });
-  }
 
   return (
     <div className="ledger-entry">
