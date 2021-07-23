@@ -17,11 +17,10 @@ export function apiFetch(path, method, data) {
   let url;
 
   if (os.hostname().indexOf("local") > -1) {
-    url = `//${process.env.REACT_APP_HOST}/api/${path}`;
-  } else {
     url = `//${process.env.REACT_APP_LOCALHOST}/api/${path}`;
+  } else {
+    url = `//${process.env.REACT_APP_HOST}/api/${path}`;
   }
-
 
   return fetch(url, {
     method: method.toUpperCase(),

@@ -55,8 +55,6 @@ export default function LedgerEntry({ setLedger }) {
     }))
   };
 
-
-
   function valid(values) {
     return Object.keys(values).map(function (key) {
       if (values[key] === '' || values[key] === 0 || values[key] === null) return false
