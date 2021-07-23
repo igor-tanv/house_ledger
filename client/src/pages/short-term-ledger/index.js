@@ -1,24 +1,56 @@
 import React, { useEffect, useState } from "react";
-
 import { withRouter } from "react-router-dom"
 
-import { apiFetch } from '../../modules/api-fetch'
+import LedgerEntry from '../../components/ledger-entry'
 
+import { apiFetch } from '../../modules/api-fetch'
+import { usersToObject } from '../../modules/users-to-object'
 import HomeButton from '../../ui/home-button'
 
-function ShortTermLedger({ match }) {
+import { defaultValues } from '../../form-helpers/defaultEntryValues'
 
+function ShortTermLedger({ match }) {
+  const [values, setValues] = useState(defaultValues)
   const [ledger, setLedger] = useState({})
+  const [users, setUsers] = useState({})
+  const [error, setError] = useState('')
 
   useEffect(() => {
     apiFetch(`ledger/short/${match.params.id}`).then((json) => {
-      console.log(json, 17)
-      setLedger(json[0])
+
+      const shortLedger = json[0]
+      console.log(shortLedger)
+      console.log(usersToObject(shortLedger.users))
+      setUsers(usersToObject(shortLedger.users))
+      setLedger(shortLedger)
     })
   }, [])
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    apiFetch(`ledger`, 'post', values)
+      .then((json) => {
+        setValues(defaultValues)
+        apiFetch('').then((json) => {
+          setLedger(json)
+        });
+      })
+      .catch((error) => {
+        setError(error)
+      });
+  }
+
   return <div className="container-wrapper">
+    {error && <span className="error">{error}</span>}
     <HomeButton />
+    <div className="ledger-entry">
+      <LedgerEntry
+        values={values}
+        setValues={setValues}
+        users={users}
+        handleSubmit={handleSubmit}
+      />
+    </div>
   </div>
 }
 

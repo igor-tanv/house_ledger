@@ -13,8 +13,6 @@ import { defaultValues } from '../../form-helpers/defaultEntryValues'
 import './styles.css'
 
 export default function LongTermLedger() {
-
-
   const [values, setValues] = useState(defaultValues)
   const [ledger, setLedger] = useState([])
   const [error, setError] = useState('')

@@ -38,10 +38,11 @@ export default function CreateShortTermLedger() {
     e.preventDefault();
     apiFetch(`ledger/short`, 'post', values)
       .then((json) => {
-        //redirect to new ledger here
-        console.log(json, 71)
+        const ledgerId = json[0].id
+        window.location.href = `/short/${ledgerId}`
       })
       .catch((error) => {
+        setError(error)
         console.log(error, 74)
       });
   }
