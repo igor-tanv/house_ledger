@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom"
 
 import LedgerEntry from '../../components/ledger-entry'
+import LedgerBalance from '../../components/ledger-balance'
 
 import { apiFetch } from '../../modules/api-fetch'
 import { usersToObject } from '../../modules/users-to-object'
@@ -51,6 +52,15 @@ function ShortTermLedger({ match }) {
         handleSubmit={handleSubmit}
       />
     </div>
+    {ledger.length > 0 ? (
+      <div>
+        <LedgerBalance
+          props={ledger}
+          users={ledger.users} />
+      </div>
+    ) : (
+      <div>No Ledger Entries</div>
+    )}
   </div>
 }
 

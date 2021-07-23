@@ -1,31 +1,24 @@
 import React from "react";
+import { usersToObject } from '../../modules/users-to-object'
 
 import './styles.css'
 
-function calculateBalance(ledger) {
-  let igor = 0
-  let nick = 0
-  let seb = 0
-  let ollie = 0
+function calculateBalance(ledger, ledgerUsers) {
 
-  // calculate ledger total
+  const userArray = ledgerUsers.split(' ')
+
+  // calculate ledger total per user
   const shareOfTotal = (ledger.reduce((total, entry) => {
     return total += entry.cost
-  }, 0) / 4)
+  }, 0) / userArray.length)
+
+  //create user object and assign each user shareOfTotal
+  const users = userArray.reduce((acc, cur) => (acc[cur] = shareOfTotal, acc), {});
 
   //loop through ledger and subtract any entry made by user from their total
-  ledger.map((entry) => {
-    if (entry.user === 'igor') igor -= entry.cost
-    if (entry.user === 'nick') nick -= entry.cost
-    if (entry.user === 'seb') seb -= entry.cost
-    if (entry.user === 'ollie') ollie -= entry.cost
-    return entry
-  })
-  igor += shareOfTotal
-  seb += shareOfTotal
-  nick += shareOfTotal
-  ollie += shareOfTotal
-  return { igor, nick, seb, ollie }
+  ledger.map((entry) => users[entry.user] -= entry.cost)
+
+  return users
 }
 
 function renderBalanceClass(userShare) {
@@ -33,17 +26,17 @@ function renderBalanceClass(userShare) {
   else return 'negative'
 }
 
-export default function LedgerBalance({ props }) {
+export default function LedgerBalance({ props, users }) {
 
-  const userShare = calculateBalance(props)
+  const userShare = calculateBalance(props, users)
+  const userNames = usersToObject(users)
 
   return (
     <div className="table-container">
       <div className="ledger-balance">
-        <h2 className={`user-balance-${renderBalanceClass(userShare.igor)}`}>Igor: {(Math.round(userShare.igor / 1000) * 1000).toLocaleString()}</h2>
-        <h2 className={`user-balance-${renderBalanceClass(userShare.nick)}`}>Nick: {(Math.round(userShare.nick / 1000) * 1000).toLocaleString()}</h2>
-        <h2 className={`user-balance-${renderBalanceClass(userShare.seb)}`}>Seb: {(Math.round(userShare.seb / 1000) * 1000).toLocaleString()}</h2>
-        <h2 className={`user-balance-${renderBalanceClass(userShare.ollie)}`}>Ollie: {(Math.round(userShare.ollie / 1000) * 1000).toLocaleString()}</h2>
+        {Object.keys(userShare).map((user) => {
+          return <h2 className={`user-balance-${renderBalanceClass(userShare[user])}`}>{userNames[user]}: {(Math.round(userShare[user] / 1000) * 1000).toLocaleString()}</h2>
+        })}
       </div>
     </div>
   );

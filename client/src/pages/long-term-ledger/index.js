@@ -4,9 +4,8 @@ import LedgerEntry from '../../components/ledger-entry'
 import LedgerTable from '../../components/ledger-table'
 import LedgerBalance from '../../components/ledger-balance'
 
-import users from '../../data/users/users.json'
-
 import { apiFetch } from '../../modules/api-fetch'
+import { usersToObject } from '../../modules/users-to-object'
 
 import { defaultValues } from '../../form-helpers/defaultEntryValues'
 
@@ -14,8 +13,10 @@ import './styles.css'
 
 export default function LongTermLedger() {
   const [values, setValues] = useState(defaultValues)
+  const [users, setUsers] = useState('seb igor nick olly')
   const [ledger, setLedger] = useState([])
   const [error, setError] = useState('')
+
 
   useEffect(() => {
     apiFetch('').then((json) => {
@@ -76,13 +77,13 @@ export default function LongTermLedger() {
       <LedgerEntry
         values={values}
         setValues={setValues}
-        users={users}
+        users={usersToObject(users)}
         handleSubmit={handleSubmit}
       />
     </div>
     {ledger.length > 0 ? (
       <div>
-        <LedgerBalance props={ledger} />
+        <LedgerBalance props={ledger} users={users} />
         <LedgerTable props={ledger} />
       </div>
     ) : (
