@@ -5,7 +5,6 @@ import LedgerEntry from '../../components/ledger-entry'
 import LedgerBalance from '../../components/ledger-balance'
 
 import { apiFetch } from '../../modules/api-fetch'
-import { usersToObject } from '../../modules/users-to-object'
 import HomeButton from '../../ui/home-button'
 
 import { defaultValues } from '../../form-helpers/defaultEntryValues'
@@ -13,16 +12,13 @@ import { defaultValues } from '../../form-helpers/defaultEntryValues'
 function ShortTermLedger({ match }) {
   const [values, setValues] = useState(defaultValues)
   const [ledger, setLedger] = useState({})
-  const [users, setUsers] = useState({})
+  const [users, setUsers] = useState('')
   const [error, setError] = useState('')
 
   useEffect(() => {
     apiFetch(`ledger/short/${match.params.id}`).then((json) => {
-
       const shortLedger = json[0]
-      console.log(shortLedger)
-      console.log(usersToObject(shortLedger.users))
-      setUsers(usersToObject(shortLedger.users))
+      setUsers(shortLedger.users)
       setLedger(shortLedger)
     })
   }, [])
@@ -56,7 +52,7 @@ function ShortTermLedger({ match }) {
       <div>
         <LedgerBalance
           props={ledger}
-          users={ledger.users} />
+          users={users} />
       </div>
     ) : (
       <div>No Ledger Entries</div>

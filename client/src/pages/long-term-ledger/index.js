@@ -13,14 +13,15 @@ import './styles.css'
 
 export default function LongTermLedger() {
   const [values, setValues] = useState(defaultValues)
-  const [users, setUsers] = useState('seb igor nick olly')
+  const [users, setUsers] = useState('')
   const [ledger, setLedger] = useState([])
   const [error, setError] = useState('')
 
 
   useEffect(() => {
     apiFetch('').then((json) => {
-      setLedger(json)
+      setLedger(json.filter(row => row.id !== undefined))
+      setUsers(json.filter(row => row.users !== undefined)[0].users)
     }).then();
   }, [])
 

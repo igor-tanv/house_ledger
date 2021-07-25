@@ -3,6 +3,7 @@ import ReactDropdown from "react-dropdown"
 import DatePicker from 'react-date-picker';
 
 import { formatDropdown } from '../../modules/format-dropdown'
+import { usersToObject } from '../../modules/users-to-object'
 import { validateEntries } from '../../modules/validate-entries'
 import { apiFetch } from '../../modules/api-fetch'
 
@@ -43,13 +44,12 @@ export default function LedgerEntry({ values, setValues, users, handleSubmit }) 
     }))
   };
 
-
   return (
     <div className="ledger-entry">
       <form onSubmit={handleSubmit} autoComplete="off">
         <ReactDropdown
           className="dropdown-wrapper"
-          options={formatDropdown(users)}
+          options={formatDropdown(usersToObject(users))}
           onChange={updateUser}
           placeholder="Select a user"
           value={values.user}
