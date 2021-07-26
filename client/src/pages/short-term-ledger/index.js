@@ -17,9 +17,9 @@ function ShortTermLedger({ match }) {
 
   useEffect(() => {
     apiFetch(`ledger/short/${match.params.id}`).then((json) => {
-      const shortLedger = json[0]
-      setUsers(shortLedger.users)
-      setLedger(shortLedger)
+      console.log(json)
+      setUsers(json.ledger[0].users)
+      setLedger(json.ledger[0])
     })
   }, [])
 
@@ -28,9 +28,10 @@ function ShortTermLedger({ match }) {
     apiFetch(`ledger/short/${match.params.id}`, 'post', values)
       .then((json) => {
         setValues(defaultValues)
-        apiFetch('').then((json) => {
-          setLedger(json)
-        });
+        const shortLedger = json[0]
+        setUsers(shortLedger.users)
+        setLedger(shortLedger)
+
       })
       .catch((error) => {
         setError(error)
