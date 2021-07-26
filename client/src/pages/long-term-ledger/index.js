@@ -19,9 +19,12 @@ export default function LongTermLedger() {
 
   useEffect(() => {
     apiFetch('').then((json) => {
-      setLedger(json.filter(row => row.id !== undefined))
-      setUsers(json.filter(row => row.users !== undefined)[0].users)
-    }).then();
+      setLedger(json)
+    })
+    apiFetch('users').then((json) => {
+      console.log(json, 25)
+      setUsers(json.users)
+    })
   }, [])
 
   function handleSubmit(e) {
