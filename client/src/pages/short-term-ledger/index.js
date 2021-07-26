@@ -17,9 +17,11 @@ function ShortTermLedger({ match }) {
 
   useEffect(() => {
     apiFetch(`ledger/short/${match.params.id}`).then((json) => {
-      console.log(json)
-      setUsers(json.ledger[0].users)
-      setLedger(json.ledger[0])
+      //destructure ledger obj and transactions arr
+      let { ledger, transactions } = json
+      ledger.transactions = transactions
+      setUsers(ledger.users)
+      setLedger(ledger)
     })
   }, [])
 
@@ -28,12 +30,12 @@ function ShortTermLedger({ match }) {
     apiFetch(`ledger/short/${match.params.id}`, 'post', values)
       .then((json) => {
         setValues(defaultValues)
-        const shortLedger = json[0]
-        setUsers(shortLedger.users)
-        setLedger(shortLedger)
-
+        let { ledger, transactions } = json
+        ledger.transactions = transactions
+        setLedger(ledger)
       })
       .catch((error) => {
+        console.log(error)
         setError(error)
       });
   }
