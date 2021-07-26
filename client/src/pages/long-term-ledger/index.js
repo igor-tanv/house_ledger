@@ -5,7 +5,6 @@ import LedgerTable from '../../components/ledger-table'
 import LedgerBalance from '../../components/ledger-balance'
 
 import { apiFetch } from '../../modules/api-fetch'
-import { usersToObject } from '../../modules/users-to-object'
 
 import { defaultValues } from '../../form-helpers/defaultEntryValues'
 
@@ -78,7 +77,7 @@ export default function LongTermLedger() {
       <LedgerEntry
         values={values}
         setValues={setValues}
-        users={usersToObject(users)}
+        users={users}
         handleSubmit={handleSubmit}
       />
     </div>

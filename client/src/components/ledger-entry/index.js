@@ -1,11 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDropdown from "react-dropdown"
 import DatePicker from 'react-date-picker';
 
 import { formatDropdown } from '../../modules/format-dropdown'
 import { usersToObject } from '../../modules/users-to-object'
 import { validateEntries } from '../../modules/validate-entries'
-import { apiFetch } from '../../modules/api-fetch'
 
 import 'react-dropdown/style.css';
 import './styles.css'

@@ -4,7 +4,6 @@ output: { ollie: 'Ollie', james: 'James', kevin: 'Kevin' }
 */
 
 export function usersToObject(usersString) {
-  console.log(usersString, 7)
   return usersString.replace(/,/g, '')
     .replace(/\s\s+/g, ' ')
     .toLowerCase()

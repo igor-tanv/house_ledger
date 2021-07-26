@@ -43,7 +43,7 @@ export default function CreateShortTermLedger() {
       })
       .catch((error) => {
         setError(error)
-        console.log(error, 74)
+          (error, 74)
       });
   }
 

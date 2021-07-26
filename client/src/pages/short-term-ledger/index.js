@@ -25,7 +25,7 @@ function ShortTermLedger({ match }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    apiFetch(`ledger`, 'post', values)
+    apiFetch(`ledger/short/${match.params.id}`, 'post', values)
       .then((json) => {
         setValues(defaultValues)
         apiFetch('').then((json) => {

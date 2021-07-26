@@ -26,6 +26,7 @@ const renderHead = () => {
 }
 //extract date format to helper function
 const renderItem = (props, index) => {
+  console.log(props, 29)
   return (
     <tr key={index} className="single-row">
       <td>{users[props.user]}</td>
