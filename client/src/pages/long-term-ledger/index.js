@@ -58,20 +58,19 @@ export default function LongTermLedger() {
       type="button"
       onClick={(e) => {
         e.preventDefault();
-        window.location.href = '/short/new';
-      }}
-    >
-      Create Short-Term Ledger
-    </button>
-
-    <button
-      type="button"
-      onClick={(e) => {
-        e.preventDefault();
         window.location.href = '/short';
       }}
     >
       Active Short-Term Ledgers
+    </button>
+    <button
+      type="button"
+      onClick={(e) => {
+        e.preventDefault();
+        window.location.href = '/short/new';
+      }}
+    >
+      Create Short-Term Ledger
     </button>
 
     <div className="ledger-entry">
