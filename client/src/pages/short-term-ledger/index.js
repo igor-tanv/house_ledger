@@ -31,7 +31,6 @@ function ShortTermLedger({ match }) {
     e.preventDefault();
     apiFetch(`ledger/short/${match.params.id}`, 'post', values)
       .then((json) => {
-        console.log(json)
         setValues(defaultValues)
         const { ledger, transactions } = json
         setLedger(transactions)
@@ -49,7 +48,6 @@ function ShortTermLedger({ match }) {
         window.location.href = `/`
       })
       .catch((error) => {
-        console.log(error)
         setError({ error })
       });
   }
