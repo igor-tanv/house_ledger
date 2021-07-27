@@ -16,13 +16,14 @@ function ShortTermLedger({ match }) {
   const [ledger, setLedger] = useState([])
   const [error, setError] = useState('')
 
+  console.log(users)
+
 
   useEffect(() => {
     apiFetch(`ledger/short/${match.params.id}`).then((json) => {
       const { ledger, transactions } = json
       setUsers(ledger.users)
       setLedger(transactions)
-      //setLedger(json)
     })
 
   }, [])
@@ -66,7 +67,7 @@ function ShortTermLedger({ match }) {
     {ledger.length > 0 ? (
       <div>
         <LedgerBalance props={ledger} users={users} />
-        <LedgerTable props={ledger} />
+        <LedgerTable props={ledger} users={users} />
       </div>
     ) : (
       <div>No Ledger Entries</div>

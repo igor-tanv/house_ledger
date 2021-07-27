@@ -2,8 +2,9 @@ import React from "react";
 import './styles.css'
 
 import formatDate from '../../modules/format-date'
+import { usersToObject } from '../../modules/users-to-object'
 
-import users from '../../data/users/users.json'
+
 
 
 const renderHead = () => {
@@ -24,11 +25,11 @@ const renderHead = () => {
     </tr>
   );
 }
-//extract date format to helper function
-const renderItem = (props, index) => {
+
+const renderItem = (props, index, users) => {
   return (
     <tr key={index} className="single-row">
-      <td>{users[props.user]}</td>
+      <td>{usersToObject(users)[props.user]}</td>
       <td>{props.item} </td>
       <td>{formatDate(props.purchase_date)}</td>
       <td>{props.cost.toLocaleString()}</td>
@@ -36,13 +37,13 @@ const renderItem = (props, index) => {
   );
 }
 
-export default function LedgerTable({ props }) {
+export default function LedgerTable({ props, users }) {
 
   return (
     <div className="table-container">
       <table className="table-ledger-entry">
         <thead>{renderHead()}</thead>
-        <tbody>{props.map((row, index) => renderItem(row, index))}</tbody>
+        <tbody>{props.map((row, index) => renderItem(row, index, users))}</tbody>
       </table>
     </div>
   );

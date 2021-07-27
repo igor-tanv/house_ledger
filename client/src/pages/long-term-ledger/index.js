@@ -16,13 +16,14 @@ export default function LongTermLedger() {
   const [ledger, setLedger] = useState([])
   const [error, setError] = useState('')
 
+  console.log(users, 19)
+
 
   useEffect(() => {
     apiFetch('').then((json) => {
       setLedger(json)
     })
     apiFetch('users').then((json) => {
-      console.log(json, 25)
       setUsers(json.users)
     })
   }, [])
@@ -87,7 +88,7 @@ export default function LongTermLedger() {
     {ledger.length > 0 ? (
       <div>
         <LedgerBalance props={ledger} users={users} />
-        <LedgerTable props={ledger} />
+        <LedgerTable props={ledger} users={users} />
       </div>
     ) : (
       <div>No Ledger Entries</div>
