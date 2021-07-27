@@ -1,7 +1,10 @@
 import React from "react";
 import './styles.css'
 
-import users from '../../data/users/users.json'
+import formatDate from '../../modules/format-date'
+import { usersToObject } from '../../modules/users-to-object'
+
+
 
 
 const renderHead = () => {
@@ -23,32 +26,24 @@ const renderHead = () => {
   );
 }
 
-const renderItem = (props, index) => {
+const renderItem = (props, index, users) => {
   return (
     <tr key={index} className="single-row">
-      <td>{users[props.user]}</td>
+      <td>{usersToObject(users)[props.user]}</td>
       <td>{props.item} </td>
-      <td>
-        {new Intl.DateTimeFormat("en-GB", {
-          weekday: "short",
-          month: "long",
-          day: "2-digit"
-        }).format(props.purchase_date)}
-      </td>
+      <td>{formatDate(props.purchase_date)}</td>
       <td>{props.cost.toLocaleString()}</td>
     </tr>
   );
 }
 
-export default function LedgerTable(props) {
-  //FIX THIS HACK
-  props = props.props
+export default function LedgerTable({ props, users }) {
 
   return (
     <div className="table-container">
       <table className="table-ledger-entry">
         <thead>{renderHead()}</thead>
-        <tbody>{props.map((row, index) => renderItem(row, index))}</tbody>
+        <tbody>{props.map((row, index) => renderItem(row, index, users))}</tbody>
       </table>
     </div>
   );

@@ -1,5 +1,5 @@
 import fetch from "isomorphic-fetch";
-import os from 'os';
+import os from 'os'
 require("es6-promises");
 
 
@@ -13,12 +13,12 @@ export function apiFetch(path, method, data) {
   if (method.toUpperCase() !== "GET") {
     options["body"] = JSON.stringify(data);
   }
-
-  let url;
-
+  let url
   if (os.hostname().indexOf("local") > -1) {
-    url = `//${process.env.REACT_APP_LOCALHOST}/api/${path}`;
+    //localhost url: for dev purposes
+    url = `//${process.env.REACT_APP_LOCALHOST}/api/${path}`
   } else {
+    // remote url
     url = `//${process.env.REACT_APP_HOST}/api/${path}`;
   }
 
