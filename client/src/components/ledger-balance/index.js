@@ -23,6 +23,8 @@ function calculateBalance(ledger, ledgerUsers) {
 
 function calculateShortLedgerBalance(ledger) {
 
+  console.log(ledger, 26)
+
   const { transactions } = ledger
 
   const userArray = ledger[0].users.split(' ')
