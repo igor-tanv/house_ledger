@@ -15,19 +15,17 @@ export default function ShortTermLedgerList() {
     })
   }, [])
 
-  console.log(ledgers)
-
   return <div className="container-wrapper">
     <HomeButton />
     <div>Active Short Term Ledgers</div>
     {ledgers.length > 0 ? (
       <div>
         {ledgers.map((ledger) => {
-          return <Link to={`/short/${ledger.id}`}>
+          return <div><Link to={`/short/${ledger.id}`}>
             <button className="ledger-list-button">{
               ledger.users
             }</button>
-          </Link>
+          </Link></div>
         })}
       </div>
     ) : (

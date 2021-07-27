@@ -56,7 +56,7 @@ export default function CreateShortTermLedger() {
         <textarea className="text-area"
           onChange={updateUsers}
           value={values.users}
-          placeholder="enter name:share (example john:60 mike:40)"
+          placeholder="enter users first names (example: john, mike, bob)"
         />
         <DatePicker
           onChange={updateDate}
