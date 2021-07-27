@@ -51,7 +51,7 @@ export default function LongTermLedger() {
   }
 
   return <div className="container-wrapper">
-    <h1>The Crown Ledger</h1>
+    <h1>The Royal Crown Ledger</h1>
     {error && <span className="error">{error}</span>}
     <button onClick={clearActiveLedger}>Clear Ledger Entries</button>
     <button
