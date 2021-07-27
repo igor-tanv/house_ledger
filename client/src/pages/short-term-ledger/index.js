@@ -16,8 +16,6 @@ function ShortTermLedger({ match }) {
   const [ledger, setLedger] = useState([])
   const [error, setError] = useState('')
 
-  console.log(users)
-
 
   useEffect(() => {
     apiFetch(`ledger/short/${match.params.id}`).then((json) => {
@@ -25,7 +23,6 @@ function ShortTermLedger({ match }) {
       setUsers(ledger.users)
       setLedger(transactions)
     })
-
   }, [])
 
   function handleSubmit(e) {
@@ -33,9 +30,12 @@ function ShortTermLedger({ match }) {
     apiFetch(`ledger/short/${match.params.id}`, 'post', values)
       .then((json) => {
         setValues(defaultValues)
+        const { ledger, transactions } = json
+        setLedger(transactions)
+
       })
       .catch((error) => {
-        setError(error)
+        setError({ error })
       });
   }
 
@@ -46,7 +46,7 @@ function ShortTermLedger({ match }) {
         setLedger(json)
       })
       .catch((error) => {
-        setError(error)
+        setError({ error })
       });
   }
 

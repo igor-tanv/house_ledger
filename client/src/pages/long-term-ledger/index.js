@@ -16,9 +16,6 @@ export default function LongTermLedger() {
   const [ledger, setLedger] = useState([])
   const [error, setError] = useState('')
 
-  console.log(users, 19)
-
-
   useEffect(() => {
     apiFetch('').then((json) => {
       setLedger(json)
@@ -49,7 +46,7 @@ export default function LongTermLedger() {
         setLedger(json)
       })
       .catch((error) => {
-        setError(error)
+        setError({ error })
       });
   }
 
