@@ -44,11 +44,12 @@ function ShortTermLedger({ match }) {
 
   function clearActiveLedger(e) {
     e.preventDefault();
-    apiFetch(`ledger/short/clear/${match.params.id}`, 'post')
+    apiFetch(`ledger/short/delete/${match.params.id}`, 'post')
       .then((json) => {
-        setLedger(json)
+        window.location.href = `/`
       })
       .catch((error) => {
+        console.log(error)
         setError({ error })
       });
   }
