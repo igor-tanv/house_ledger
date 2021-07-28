@@ -54,24 +54,6 @@ export default function LongTermLedger() {
     <h1>The Royal Crown Ledger</h1>
     {error && <span className="error">{error}</span>}
     <button onClick={clearActiveLedger}>Clear Ledger Entries</button>
-    <button
-      type="button"
-      onClick={(e) => {
-        e.preventDefault();
-        window.location.href = '/short';
-      }}
-    >
-      Active Short-Term Ledgers
-    </button>
-    <button
-      type="button"
-      onClick={(e) => {
-        e.preventDefault();
-        window.location.href = '/short/new';
-      }}
-    >
-      Create Short-Term Ledger
-    </button>
 
     <div className="ledger-entry">
       <LedgerEntry

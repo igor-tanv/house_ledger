@@ -4,8 +4,6 @@ import DatePicker from 'react-date-picker';
 import { apiFetch } from '../../modules/api-fetch'
 import { validateEntries } from '../../modules/validate-entries'
 
-import HomeButton from '../../ui/home-button'
-
 import 'react-dropdown/style.css';
 
 export default function CreateShortTermLedger() {
@@ -49,7 +47,6 @@ export default function CreateShortTermLedger() {
 
   return (
     <div className="ledger-form">
-      <HomeButton />
       <h1>Create a Short Term Ledger</h1>
       {error && <span className="error">{error}</span>}
       <form onSubmit={handleSubmit} autoComplete="off">

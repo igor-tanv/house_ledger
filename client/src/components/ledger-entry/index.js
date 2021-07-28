@@ -2,13 +2,14 @@ import React from "react";
 import ReactDropdown from "react-dropdown"
 import DatePicker from 'react-date-picker';
 
+import { TextField, Button } from '@material-ui/core'
+
 import { formatDropdown } from '../../modules/format-dropdown'
 import { usersToObject } from '../../modules/users-to-object'
 import { validateEntries } from '../../modules/validate-entries'
 
 import 'react-dropdown/style.css';
 import './styles.css'
-
 
 export default function LedgerEntry({ values, setValues, users, handleSubmit }) {
 
@@ -47,6 +48,7 @@ export default function LedgerEntry({ values, setValues, users, handleSubmit }) 
     <div className="ledger-entry">
       <form onSubmit={handleSubmit} autoComplete="off">
         <ReactDropdown
+          id='select'
           className="dropdown-wrapper"
           options={formatDropdown(usersToObject(users))}
           onChange={updateUser}
@@ -54,26 +56,33 @@ export default function LedgerEntry({ values, setValues, users, handleSubmit }) 
           value={values.user}
         />
 
+        <TextField
+          variant='outlined'
+          color='secondary'
+          type="text"
+          onChange={updateCost}
+          value={values.cost.toLocaleString()}
+        />
+        <TextField
+          variant='outlined'
+          color='secondary'
+          onChange={updateItem}
+          value={values.item}
+          placeholder="enter item description"
+        />
         <DatePicker
           onChange={updateDate}
           value={values.purchaseDate}
           dateFormat="MMMM d, yyyy"
         />
 
-        <input className="quantity"
-          type="text"
-          onChange={updateCost}
-          value={values.cost.toLocaleString()}
-        />
-        <textarea className="text-area"
-          onChange={updateItem}
-          value={values.item}
-          placeholder="enter item description"
-        />
-
-        <button className="button" type="submit" disabled={validateEntries(values)}>
+        <Button
+          variant='contained'
+          color='primary'
+          type="submit"
+          disabled={validateEntries(values)}>
           Submit to Ledger
-        </button>
+        </Button>
       </form>
     </div>
   )

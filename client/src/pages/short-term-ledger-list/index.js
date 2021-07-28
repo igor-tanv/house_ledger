@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 
 import { apiFetch } from '../../modules/api-fetch'
 
-import HomeButton from '../../ui/home-button'
-
 export default function ShortTermLedgerList() {
 
   const [ledgers, setLedgers] = useState([])
@@ -19,8 +17,6 @@ export default function ShortTermLedgerList() {
   }, [])
 
   return <div className="container-wrapper">
-    <HomeButton />
-
     {error && <span className="error">{error}</span>}
     {ledgers.length > 0 ? (
       <div>

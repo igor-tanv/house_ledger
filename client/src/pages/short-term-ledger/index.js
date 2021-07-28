@@ -10,8 +10,6 @@ import { usersToObject } from '../../modules/users-to-object'
 
 import { defaultValues } from '../../form-helpers/defaultEntryValues'
 
-import HomeButton from '../../ui/home-button'
-
 function ShortTermLedger({ match }) {
   const [values, setValues] = useState(defaultValues)
   const [users, setUsers] = useState('')
@@ -57,7 +55,6 @@ function ShortTermLedger({ match }) {
   return <div className="container-wrapper">
     <h1>Short Ledger For: {title}</h1>
     <div>{error && <span className="error">{error}</span>}</div>
-    <HomeButton />
     <button onClick={clearActiveLedger}>Clear This Ledger</button>
     <div className="ledger-entry">
       <LedgerEntry
