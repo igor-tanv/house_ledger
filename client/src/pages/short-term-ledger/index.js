@@ -59,14 +59,18 @@ function ShortTermLedger({ match }) {
     <div>{error && <span className="error">{error}</span>}</div>
     <HomeButton />
     <button onClick={clearActiveLedger}>Clear This Ledger</button>
-    <div className="ledger-entry">
-      <LedgerEntry
-        values={values}
-        setValues={setValues}
-        users={users}
-        handleSubmit={handleSubmit}
-      />
-    </div>
+    {users ? (
+      <div className="ledger-entry">
+        <LedgerEntry
+          values={values}
+          setValues={setValues}
+          users={users}
+          handleSubmit={handleSubmit}
+        />
+      </div>
+    ) : (
+      <div>Loading Users...</div>
+    )}
     {ledger.length > 0 ? (
       <div>
         <LedgerBalance props={ledger} users={users} />
