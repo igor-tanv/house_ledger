@@ -15,7 +15,7 @@ import './styles.css'
 
 const useStyles = makeStyles({
   table: {
-    maxWidth: 750,
+    maxWidth: 850,
   }
 });
 

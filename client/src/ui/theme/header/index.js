@@ -11,8 +11,8 @@ export default function Header() {
   return (
     <div >
       <AppBar position="static">
-        <Typography variant="h6" mx='auto'>
-          Royal Ledger of the Seabass
+        <Typography variant="h6" align='center'>
+          SINO Ledger
         </Typography>
         <Toolbar>
           <ButtonGroup
