@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
@@ -7,30 +6,15 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Typography from '@material-ui/core/Typography';
 
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
-  title: {
-    flexGrow: 8,
-  },
-}));
-
 export default function Header() {
 
-  const classes = useStyles();
-
   return (
-    <div className={classes.root}>
+    <div >
       <AppBar position="static">
-        <Typography variant="h6" className={classes.title}>
+        <Typography variant="h6" mx='auto'>
           Royal Ledger of the Seabass
         </Typography>
         <Toolbar>
-
           <ButtonGroup
             variant='contained'
             color='secondary'
@@ -51,7 +35,7 @@ export default function Header() {
                 window.location.href = '/short';
               }}
             >
-              Open Short Ledgers
+              Active Short Ledgers
             </Button>
             <Button
               type="button"
@@ -63,7 +47,6 @@ export default function Header() {
               New Short Ledger
             </Button>
           </ButtonGroup>
-
         </Toolbar>
       </AppBar>
     </div>

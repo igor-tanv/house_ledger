@@ -56,15 +56,15 @@ export default function LedgerEntry({ values, setValues, users, handleSubmit }) 
         />
 
         <TextField
+          className='text-area'
           variant='outlined'
-          color='secondary'
           type="text"
           onChange={updateCost}
           value={values.cost.toLocaleString()}
         />
         <TextField
+          className='text-area'
           variant='outlined'
-          color='secondary'
           onChange={updateItem}
           value={values.item}
           placeholder="enter item description"

@@ -11,6 +11,8 @@ import Paper from '@material-ui/core/Paper';
 import { usersToObject } from '../../modules/users-to-object'
 import formatDate from '../../modules/format-date'
 
+import './styles.css'
+
 const useStyles = makeStyles({
   table: {
     maxWidth: 750,

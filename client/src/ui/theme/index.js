@@ -2,6 +2,8 @@ import React from "react";
 import Header from "./header";
 import { createTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
+
+
 const theme = createTheme({
   palette: {
     primary: {
@@ -17,6 +19,7 @@ const theme = createTheme({
       contrastText: '#000',
     },
   },
+  color: '#ba000d',
 });
 
 
@@ -24,7 +27,7 @@ export default function Theme({ children }) {
   return (
     <MuiThemeProvider theme={theme}>
       <Header />
-      <div>{children}</div>
+      <div className={theme.color}>{children}</div>
     </MuiThemeProvider>
   );
 }
