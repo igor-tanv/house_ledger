@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Button from '@material-ui/core/Button';
 
 import LedgerEntry from '../../components/ledger-entry'
 import LedgerTable from '../../components/ledger-table'
@@ -53,10 +54,13 @@ export default function LongTermLedger() {
   }
 
   return <div className="container-wrapper">
-    <h1>The Royal Crown Ledger</h1>
     {error && <span className="error">{error}</span>}
-    <button onClick={clearActiveLedger}>Clear Ledger Entries</button>
-
+    <Button
+      onClick={clearActiveLedger}
+      color='primary'
+      variant='contained'>
+      Clear Ledger Entries
+    </Button>
     <div className="ledger-entry">
       <LedgerEntry
         values={values}

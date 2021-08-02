@@ -49,7 +49,6 @@ export default function LedgerEntry({ values, setValues, users, handleSubmit }) 
       <form onSubmit={handleSubmit} autoComplete="off">
         <ReactDropdown
           id='select'
-          className="dropdown-wrapper"
           options={formatDropdown(usersToObject(users))}
           onChange={updateUser}
           placeholder="Select a user"
