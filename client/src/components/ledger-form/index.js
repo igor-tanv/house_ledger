@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import DatePicker from 'react-date-picker';
+import Button from '@material-ui/core/Button';
 
 import { apiFetch } from '../../modules/api-fetch'
 import { validateEntries } from '../../modules/validate-entries'
-
-import HomeButton from '../../ui/home-button'
 
 import 'react-dropdown/style.css';
 
@@ -49,7 +48,6 @@ export default function CreateShortTermLedger() {
 
   return (
     <div className="ledger-form">
-      <HomeButton />
       <h1>Create a Short Term Ledger</h1>
       {error && <span className="error">{error}</span>}
       <form onSubmit={handleSubmit} autoComplete="off">
@@ -63,9 +61,9 @@ export default function CreateShortTermLedger() {
           value={values.date}
           dateFormat="MMMM d, yyyy"
         />
-        <button className="button" type="submit" disabled={validateEntries(values)}>
+        <Button variant='contained' color='secondary' type="submit" disabled={validateEntries(values)}>
           Create
-        </button>
+        </Button>
       </form>
     </div>
   )

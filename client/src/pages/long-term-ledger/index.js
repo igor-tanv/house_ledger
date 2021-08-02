@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Button from '@material-ui/core/Button';
 
 import LedgerEntry from '../../components/ledger-entry'
 import LedgerTable from '../../components/ledger-table'
@@ -40,53 +41,34 @@ export default function LongTermLedger() {
   }
 
   function clearActiveLedger(e) {
-    e.preventDefault();
-    apiFetch(`ledger/clear`, 'post')
-      .then((json) => {
-        setLedger(json)
-      })
-      .catch((error) => {
-        setError({ error })
-      });
+    if (window.confirm("Make sure everyones paid their dues before clearing")) {
+      e.preventDefault();
+      apiFetch(`ledger/clear`, 'post')
+        .then((json) => {
+          setLedger(json)
+        })
+        .catch((error) => {
+          setError({ error })
+        });
+    }
   }
 
   return <div className="container-wrapper">
-    <h1>The Royal Crown Ledger</h1>
     {error && <span className="error">{error}</span>}
-    <button onClick={clearActiveLedger}>Clear Ledger Entries</button>
-    <button
-      type="button"
-      onClick={(e) => {
-        e.preventDefault();
-        window.location.href = '/short';
-      }}
-    >
-      Active Short-Term Ledgers
-    </button>
-    <button
-      type="button"
-      onClick={(e) => {
-        e.preventDefault();
-        window.location.href = '/short/new';
-      }}
-    >
-      Create Short-Term Ledger
-    </button>
-
-    {users ? (
-      <div className="ledger-entry">
-        <LedgerEntry
-          values={values}
-          setValues={setValues}
-          users={users}
-          handleSubmit={handleSubmit}
-        />
-      </div>
-    ) : (
-      <div>Loading Users...</div>
-    )}
-
-
+    <Button
+      onClick={clearActiveLedger}
+      color='secondary'
+      variant='contained'>
+      Clear Ledger Entries
+    </Button>
+    <div className="ledger-entry">
+      <LedgerEntry
+        values={values}
+        setValues={setValues}
+        users={users}
+        handleSubmit={handleSubmit}
+      />
+    </div>
     {ledger.length > 0 ? (
       <div>
         <LedgerBalance props={ledger} users={users} />

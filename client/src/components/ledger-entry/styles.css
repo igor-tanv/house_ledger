@@ -1,21 +1,19 @@
+
 .ledger-entry {
   position: relative;
-  border: 3px solid black;
-}
-
-.dropdown-wrapper {
-  border: 3px solid purple;
+  border: 1px solid black;
+  background-color: #fffde7;
+  max-width: 850px;
 }
 
 .text-area {
   width: 100%;
   position: relative;
   overflow: hidden;
-  background-color: white;
+  background-color: #fffde7;
   border: 1px solid #ccc;
   border-radius: 2px;
   box-sizing: border-box;
-  color: #333;
   cursor: default;
   outline: none;
   padding: 8px 52px 8px 10px;
@@ -24,7 +22,6 @@
 
 .button {
   background-color: blue;
-  color: #ffffff;
   padding: 11px 1.5rem;
   border: none;
   cursor: pointer;
