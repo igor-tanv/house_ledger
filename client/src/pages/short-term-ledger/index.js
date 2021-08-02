@@ -40,14 +40,16 @@ function ShortTermLedger({ match }) {
   }
 
   function clearActiveLedger(e) {
-    e.preventDefault();
-    apiFetch(`ledger/short/delete/${match.params.id}`, 'post')
-      .then((json) => {
-        window.location.href = `/`
-      })
-      .catch((error) => {
-        setError({ error })
-      });
+    if (window.confirm("Make sure everyone has paid their share before closing this ledger.")) {
+      e.preventDefault();
+      apiFetch(`ledger/short/delete/${match.params.id}`, 'post')
+        .then((json) => {
+          window.location.href = `/`
+        })
+        .catch((error) => {
+          setError({ error })
+        });
+    }
   }
 
   const title = Object.values(usersToObject(users)).reduce((acc, cur) => acc += ' ' + cur, ' ')

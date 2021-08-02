@@ -40,14 +40,16 @@ export default function LongTermLedger() {
   }
 
   function clearActiveLedger(e) {
-    e.preventDefault();
-    apiFetch(`ledger/clear`, 'post')
-      .then((json) => {
-        setLedger(json)
-      })
-      .catch((error) => {
-        setError({ error })
-      });
+    if (window.confirm("Make sure everyones paid their dues before clearing")) {
+      e.preventDefault();
+      apiFetch(`ledger/clear`, 'post')
+        .then((json) => {
+          setLedger(json)
+        })
+        .catch((error) => {
+          setError({ error })
+        });
+    }
   }
 
   return <div className="container-wrapper">
