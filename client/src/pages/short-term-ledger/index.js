@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom"
+import Button from '@material-ui/core/Button';
 
 import LedgerEntry from '../../components/ledger-entry'
 import LedgerTable from '../../components/ledger-table'
@@ -57,7 +58,12 @@ function ShortTermLedger({ match }) {
   return <div className="container-wrapper">
     <h1>Short Ledger For: {title}</h1>
     <div>{error && <span className="error">{error}</span>}</div>
-    <button onClick={clearActiveLedger}>Clear This Ledger</button>
+    <Button
+      onClick={clearActiveLedger}
+      variant='contained'
+      color='primary'>
+      Clear This Ledger
+    </Button>
     <div className="ledger-entry">
       <LedgerEntry
         values={values}
