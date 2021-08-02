@@ -46,7 +46,7 @@ export default function LedgerTable({ props, users }) {
                 {usersToObject(users)[row.user]}
               </TableCell>
               <TableCell align="right">{row.item}</TableCell>
-              <TableCell align="right">{formatDate(row.purchaseDate)}</TableCell>
+              <TableCell align="right">{formatDate(row.purchase_date)}</TableCell>
               <TableCell align="right">{row.cost.toLocaleString()}</TableCell>
             </TableRow>
           ))}
