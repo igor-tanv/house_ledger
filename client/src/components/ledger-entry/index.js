@@ -8,7 +8,6 @@ import { formatDropdown } from '../../modules/format-dropdown'
 import { usersToObject } from '../../modules/users-to-object'
 import { validateEntries } from '../../modules/validate-entries'
 
-import 'react-dropdown/style.css';
 import './styles.css'
 
 export default function LedgerEntry({ values, setValues, users, handleSubmit }) {

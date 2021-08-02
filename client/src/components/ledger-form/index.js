@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DatePicker from 'react-date-picker';
+import Button from '@material-ui/core/Button';
 
 import { apiFetch } from '../../modules/api-fetch'
 import { validateEntries } from '../../modules/validate-entries'
@@ -60,9 +61,9 @@ export default function CreateShortTermLedger() {
           value={values.date}
           dateFormat="MMMM d, yyyy"
         />
-        <button className="button" type="submit" disabled={validateEntries(values)}>
+        <Button variant='contained' color='secondary' type="submit" disabled={validateEntries(values)}>
           Create
-        </button>
+        </Button>
       </form>
     </div>
   )

@@ -11,12 +11,17 @@ import Paper from '@material-ui/core/Paper';
 import { usersToObject } from '../../modules/users-to-object'
 import formatDate from '../../modules/format-date'
 
-import './styles.css'
+//import './styles.css'
 
 const useStyles = makeStyles({
-  table: {
+  root: {
     maxWidth: 850,
-  }
+  },
+  table: {
+    background: '#fffde7',
+    tableLayout: 'fixed'
+
+  },
 });
 
 
@@ -24,11 +29,11 @@ export default function LedgerTable({ props, users }) {
   const classes = useStyles();
 
   return (
-    <TableContainer component={Paper} className={classes.table}>
-      <Table className={classes.table} aria-label="simple table">
+    <TableContainer component={Paper} className={classes.root}>
+      <Table className={classes.table} aria-label="simple table" border={2}>
         <TableHead>
           <TableRow>
-            <TableCell >Who</TableCell>
+            <TableCell>Who</TableCell>
             <TableCell align="right">What</TableCell>
             <TableCell align="right">When</TableCell>
             <TableCell align="right">How Much</TableCell>
@@ -36,7 +41,7 @@ export default function LedgerTable({ props, users }) {
         </TableHead>
         <TableBody>
           {props.map((row) => (
-            <TableRow key={row.user}>
+            <TableRow key={row.id}>
               <TableCell component="th" scope="row">
                 {usersToObject(users)[row.user]}
               </TableCell>

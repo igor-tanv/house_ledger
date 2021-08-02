@@ -3,7 +3,6 @@ import Header from "./header";
 import { createTheme, MuiThemeProvider } from '@material-ui/core/styles';
 
 
-
 const theme = createTheme({
   palette: {
     primary: {
@@ -11,15 +10,8 @@ const theme = createTheme({
       main: '#3f50b5',
       dark: '#002884',
       contrastText: '#fff',
-    },
-    secondary: {
-      light: '#ff7961',
-      main: '#ff3d00',
-      dark: '#ba000d',
-      contrastText: '#000',
-    },
+    }
   },
-  color: '#ba000d',
 });
 
 
@@ -27,7 +19,7 @@ export default function Theme({ children }) {
   return (
     <MuiThemeProvider theme={theme}>
       <Header />
-      <div className={theme.color}>{children}</div>
+      <div>{children}</div>
     </MuiThemeProvider>
   );
 }

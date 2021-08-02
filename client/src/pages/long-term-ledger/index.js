@@ -57,7 +57,7 @@ export default function LongTermLedger() {
     {error && <span className="error">{error}</span>}
     <Button
       onClick={clearActiveLedger}
-      color='primary'
+      color='secondary'
       variant='contained'>
       Clear Ledger Entries
     </Button>
