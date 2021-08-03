@@ -45,7 +45,7 @@ export default function LedgerEntry({ values, setValues, users, handleSubmit }) 
 
   return (
     <div className="ledger-entry">
-      <form onSubmit={handleSubmit} autoComplete="off">
+      {users ? <form onSubmit={handleSubmit} autoComplete="off">
         <ReactDropdown
           id='select'
           options={formatDropdown(usersToObject(users))}
@@ -81,7 +81,7 @@ export default function LedgerEntry({ values, setValues, users, handleSubmit }) 
           disabled={validateEntries(values)}>
           Submit to Ledger
         </Button>
-      </form>
+      </form> : <div>Loading Users...</div>}
     </div>
   )
 }
